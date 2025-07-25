@@ -46,4 +46,12 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
+<<<<<<< HEAD
+=======
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+>>>>>>> ee872618872c060ea9d48e4c414b8936a14a9c4d
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
