@@ -20,7 +20,7 @@ app.post('/api/contact', async (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: 'info@universaltoolinc.com',
+    to: 'info@universal.com',
     subject: `Contact Form: ${subject}`,
     text: `
       Name: ${name}
@@ -28,7 +28,7 @@ app.post('/api/contact', async (req, res) => {
       Company: ${company}
       Phone: ${phone}
       Subject: ${subject}
-      Message: ${message}
+      Message: ${message} 
     `
   };
 
@@ -41,4 +41,14 @@ app.post('/api/contact', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
