@@ -28,7 +28,7 @@ app.post('/api/contact', async (req, res) => {
       Company: ${company}
       Phone: ${phone}
       Subject: ${subject}
-      Message: ${message}
+      Message: ${message} 
     `
   };
 
