@@ -2,7 +2,6 @@
   "name": "universal-tool-inc",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
   "dev": "vite",
   "build": "npx tsc && npx vite build",
