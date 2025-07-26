@@ -6,8 +6,8 @@
     "dev": "vite",
     "build": "npx tsc && npx vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "start": "node contact-api.js"
+    "preview": "vite preview"
+    //"start": "node contact-api.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
