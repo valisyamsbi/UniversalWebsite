@@ -24,6 +24,10 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # Ensure web.config is copied to dist (if needed)
+      - name: Copy web.config to dist
+        run: cp public/web.config dist/web.config
+
       - name: Zip build output
         run: |
           cd dist
