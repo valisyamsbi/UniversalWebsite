@@ -1,4 +1,3 @@
-# .github/workflows/main_universalwebsite.yml
 name: Deploy Vite React App to Azure App Service
 
 on:
@@ -25,9 +24,15 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Zip build output
+        run: |
+          cd dist
+          zip -r ../dist.zip .
+        shell: bash
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: UniversalWebsite 
+          app-name: UniversalWebsite
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
-          package: ./dist
+          package: dist.zip
