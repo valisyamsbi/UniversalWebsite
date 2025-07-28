@@ -10,32 +10,17 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        alert('Thank you! Your message has been sent.');
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          phone: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        alert('Sorry, there was a problem sending your message. Please try again later.');
-      }
-    } catch (error) {
-      alert('Sorry, there was a problem sending your message. Please try again later.');
-    }
+    alert('Thank you! Your message has been received. (Demo only, no backend)');
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      phone: '',
+      subject: '',
+      message: ''
+    });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
