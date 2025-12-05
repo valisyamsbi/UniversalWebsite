@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  name      String
+  description String?
+  questions QuestionTemplate[]
+  prices    Price[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuestionTemplate {
+  id         String   @id @default(uuid())
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+  key        String
+  label      String
+  type       String
+  required   Boolean  @default(true)
+  order      Int      @default(0)
+  options    QuestionOption[]
+}
+
+model QuestionOption {
+  id           String @id @default(uuid())
+  question     QuestionTemplate @relation(fields: [questionId], references: [id])
+  questionId   String
+  value        String
+  label        String?
+}
+
+model Price {
+  id          String   @id @default(uuid())
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  optionMap   Json     // { hexType: "single-hex", size: "10mm" }
+  basePrice   Float
+  currency    String   @default("USD")
+  quantityTiers Json?  // [{min:1, max:9, price:10.0}, ...]
+  createdBy   AdminUser? @relation(fields: [createdById], references: [id])
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AdminUser {
+  id           String  @id @default(uuid())
+  username     String  @unique
+  email        String? @unique
+  passwordHash String
+  role         String  @default("admin")
+  createdAt    DateTime @default(now())
+  lastLogin    DateTime?
+  prices       Price[]
+}
+
+model PriceAudit {
+  id        String @id @default(uuid())
+  priceId   String
+  changedBy String?
+  diff      Json
+  changedAt DateTime @default(now())
+}

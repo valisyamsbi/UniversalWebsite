@@ -1,7 +1,7 @@
-
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import Admin from './components/Admin';
 import Hero from './components/Hero';
 import About from './components/About';
 import Products from './components/Products';
@@ -42,6 +42,11 @@ function App() {
     <>
       <section id="home">
         <Hero />
+        <div className="flex justify-center mt-8">
+          <a href="/quote" className="px-8 py-4 bg-green-700 text-white text-xl font-bold rounded-lg shadow-lg hover:bg-green-800 transition-all">
+            Get an Instant Quote
+          </a>
+        </div>
       </section>
       
       <section id="about">
@@ -61,6 +66,7 @@ function App() {
       <section id="contact">
         <Contact />
       </section>
+                <Route path="/admin" element={<Admin />} />
     </>
   );
   return (
