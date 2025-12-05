@@ -5,9 +5,6 @@ interface ProductSpec {
   options: string[];
   priceMultiplier: { [key: string]: number };
 }
-
-export default InstantQuotePage;
-
 interface Product {
   id: string;
   name: string;
@@ -18,11 +15,7 @@ interface Product {
   description: string;
 }
 
-interface CustomizedProduct extends Product {
-  selectedSpecs: { [key: string]: string };
-  finalPrice: number;
-  quantity: number;
-}
+// CustomizedProduct interface removed — not used in this component
 
 const InstantQuotePage: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -274,4 +267,5 @@ const InstantQuotePage: React.FC = () => {
       </div>
     );
   }
-// ...function and export only...
+
+export default InstantQuotePage;
